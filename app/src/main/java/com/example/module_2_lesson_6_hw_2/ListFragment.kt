@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_list.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -19,7 +20,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), PatientListCallback{
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -43,7 +44,7 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        rvPatients.adapter = PatientsAdapter(getPatients(), requireContext())
+        rvPatients.adapter = PatientsAdapter(getPatients(), requireContext(),this)
         rvPatients.layoutManager = LinearLayoutManager(requireContext())
     }
 
@@ -83,6 +84,15 @@ class ListFragment : Fragment() {
             BitmapFactory.decodeResource(resources, R.drawable.friends_5), "Male", "Medical history of Mykyta Kozak."))
 
         return patients
+    }
+
+    override fun onItemSelected(item: Patient) {
+
+        requireActivity().supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.flDetails,DetailsFragment.newInstance(item))
+            .addToBackStack(null)
+            .commit()
     }
 
     companion object {
