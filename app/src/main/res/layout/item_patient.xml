@@ -9,6 +9,7 @@
 
     <TextView
         android:id="@+id/tvPatient"
+        style="@style/title_header_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
