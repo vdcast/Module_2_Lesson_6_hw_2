@@ -3,7 +3,7 @@
 
 Fragments.
 
-**Technical task:**
+**Task:**
 
 Write a database of patients, as in the lesson, expanding the number of fields. Implement Master Detail Flow.
 
